@@ -28,3 +28,4 @@ log.txt
 
 # Ignore system files
 Thumbs.db
+.vercel
