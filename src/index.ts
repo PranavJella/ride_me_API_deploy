@@ -41,8 +41,8 @@ app.use(logger);
 app.use(cors());
 
 
-const MONGO_URL = "mongodb://localhost:27017";
-// const MONGO_URL = process.env.CONNECTION_STRING ?? "";
+// const MONGO_URL = "mongodb://localhost:27017";
+const MONGO_URL = process.env.CONNECTION_STRING ?? "";
 mongoose.connect(MONGO_URL, {
     dbName: process.env.DATABASE_NAME,
 }).then(() => {
@@ -50,6 +50,10 @@ mongoose.connect(MONGO_URL, {
 }).catch((error) => console.log(error));
 
 app.use('/api/v1', router);
+
+app.get('/', (req: Request, res: Response) => {
+    res.send('Ride me API');
+});
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     errorMiddleware(err, req, res, next);
